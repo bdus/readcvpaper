@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Class tritrain.TriTrain</title>
+<meta name="generator" content="Namo WebEditor v3.0">
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<h2><font face="Times New Roman">ReadMe File for TriTrain Package</font></h2>
+<p>&nbsp;</p>
+<h2><font size="3">package tritrain </font></h2>
+<h2><br>
+Class TriTrain</h2>
+<table border="0" width="100%" id="table1">
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            Description:</b></font><font size="3"> </font><span style="FONT-WEIGHT: 400"><font
+             size="3">&nbsp;</font></span></td>
+        <td><p>TriTrain is a semi-supervised algorithm, which refines each of&nbsp; 
+            the three component classifiers generated from the original labeled 
+            example set with the unlabeled examples based on the predictions 
+            the other classifiers agree on, and finally combines their prediction 
+            via majority voting.</td>
+    </tr>
+    <tr>
+        <td width="114"><p>&nbsp;</td>
+        <td><p>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            Reference:</b></font></td>
+        <td><p>Z.-H. Zhou and M. Li. <u>Tri-training: exploiting unlabeled data 
+            using three classifiers</u>. <i>IEEE Transactions on Knowledge and 
+            Data Engineering</i>. 2005, vol.17, no.11, pp.1529-1541.</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p>&nbsp;</td>
+        <td><p>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            ATTN:</b></font><span style="FONT-WEIGHT: 400"><font size="3">&nbsp;&nbsp;</font></span></td>
+        <td><p><span style="font-weight: 400"><font size="3">This package is 
+            free for academic usage. You can run it at your own risk. For other 
+            purposes, please contact Prof. Zhi-Hua Zhou </font></span><span style="font-weight: 400"><a href="mailto:(zhouzh@nju.edu.cn"><font
+             size="3">(zhouzh@nju.edu.cn</font></a></span><span style="font-weight: 400"><font
+             size="3">).</font></span></td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p>&nbsp;</td>
+        <td><p>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            Requirement:</b></font></td>
+        <td><p><span style="FONT-WEIGHT: 400"><font size="3">To use this package, 
+            the whole </font></span><a href="http://www.cs.waikato.ac.nz/ml/weka/"><font
+             face="Times New Roman">WEKA</font></a><font face="Times New Roman"> 
+            </font><span style="FONT-WEIGHT: 400"><font size="3">&nbsp;environment 
+            (ver 3.4) must be available. Refer: I.H. Witten and E. Frank. </font></span><span
+             style="FONT-WEIGHT: 400"><font size="3"><i>Data Mining: Practical 
+            Machine Learning Tools and Techniques with&nbsp;Java Implementations</i></font></span><span
+             style="FONT-WEIGHT: 400"><font size="3">. Morgan Kaufmann, San 
+            Francisco, CA, 2000.</font></span></td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p>&nbsp;</td>
+        <td><p>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            Data format:</b></font></td>
+        <td><p><span style="font-weight: 400"><font size="3">Both the input 
+            and output formats are the same as those used by WEKA.</font></span></td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p>&nbsp;</td>
+        <td><p>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="114" valign="top"><p><font size="3"><b>&nbsp;&nbsp;&nbsp; 
+            ATTN2: </b></font></td>
+        <td><p><span style="font-weight: 400"><font size="3">This package was 
+            developed by Mr. Ming Li </font></span><span style="font-weight: 400"><a href="mailto:(lim@lamda.nju.edu.cn"><font
+             size="3">(lim@lamda.nju.edu.cn</font></a></span><span style="font-weight: 400"><font
+             size="3">). This ReadMe file roughly explains the codes. For any 
+            problem concerning the code, please feel free to contact Mr. Li.</font></span></td>
+    </tr>
+</table>
+<dl>
+    <dt>&nbsp; 
+    <dt>&nbsp; 
+    <dt><font size="4">public class </font><font size="4"><b>TriTrain</b></font><font
+     size="4"> </font>
+</dl>
+<table border cellpadding="3" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#CCCCFF"><p><font size="5"><b>Field Detail</b></font><font
+             size="5"> </font></td>
+    </tr>
+</table>
+<h3><a name="m_baseClassifier">m_baseClassifier</a></h3>
+<pre>private weka.classifiers.Classifier <b>m_baseClassifier</b></pre>
+<dl>
+    <dd>The base classifier 
+</dl>
+<dl>
+    <dd><hr> 
+</dl>
+<h3>m_classifiers</h3>
+<pre>private weka.classifiers.Classifier[] <b>m_classifiers</b></pre>
+<dl>
+    <dd>The component classifiers 
+</dl>
+<dl>
+    <dd><hr> 
+</dl>
+<table border cellpadding="3" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#CCCCFF"><p><font size="5"><b>Constructor Detail</b></font><font
+             size="5"> </font></td>
+    </tr>
+</table>
+<h3><a name="TriTrain()">TriTrain</a></h3>
+<pre>public <b>TriTrain</b>()</pre>
+<dl>
+    <dd>The constructor 
+</dl>
+<dl>
+    <dd><hr> 
+</dl>
+<table border cellpadding="3" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#CCCCFF"><p><font size="5"><b>Method Detail</b></font><font
+             size="5"> </font></td>
+    </tr>
+</table>
+<h3><a name="setClassifier(weka.classifiers.Classifier)">setClassifier</a></h3>
+<pre>public void <b>setClassifier</b>(weka.classifiers.Classifier&nbsp;c)</pre>
+<dl>
+    <dd>Sets the base classifier 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>c</code> -&nbsp; The base classifier 
+</dl>
+<p><hr> </p>
+<h3>buildClassifier</h3>
+<pre>public void <b>buildClassifier</b>(weka.core.Instances&nbsp;labeled,
+                            weka.core.Instances&nbsp;unlabeled)</pre>
+<dl>
+    <dd>Builds classifier via tri-training 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>labeled</code> - The original labeled example set 
+    <dd><code>unlabeled</code> - The unlabeled example set 
+    <dt><b>Throws:</b> 
+    <dd><code>Exception</code> - Some exception 
+</dl>
+<p><hr> </p>
+<h3>distributionForInstance</h3>
+<pre>public double[] <b>distributionForInstance</b>(weka.core.Instance&nbsp;inst)</pre>
+<dl>
+    <dd>Returns the probability label of a given instance 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>inst</code> - The instance 
+    <dt><b>Returns:</b> 
+    <dd>double[]:&nbsp; The probability label 
+    <dt><b>Throws:</b> 
+    <dd><code>Exception</code> - Some exception 
+</dl>
+<p><hr> </p>
+<h3>classifyInstance</h3>
+<pre>public double <b>classifyInstance</b>(weka.core.Instance&nbsp;inst)</pre>
+<dl>
+    <dd>Classifies a given instance 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>inst</code> - The instance 
+    <dt><b>Returns:</b> 
+    <dd>double: The class value 
+    <dt><b>Throws:</b> 
+    <dd><code>Exception</code> - Some Exception 
+</dl>
+<p><hr> </p>
+<h3>combine</h3>
+<pre>private weka.core.Instances <b>combine</b>(weka.core.Instances&nbsp;L,
+                                    weka.core.Instances&nbsp;Li)</pre>
+<dl>
+    <dd>Adds the instances in initial training set L to the newly labeled set 
+    Li 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>L</code> - The initial training set 
+    <dd><code>Li</code> -The newly labeled set 
+    <dt><b>Returns:</b> 
+    <dd>Instances:&nbsp; The combined data set 
+</dl>
+<p><hr> </p>
+<h3>measureError</h3>
+<pre>protected double <b>measureError</b>(weka.core.Instances&nbsp;data,
+                              int&nbsp;id)</pre>
+<dl>
+    <dd>Measure combined error excluded the classifier 'id' on the given data 
+    set 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>data</code> - The data set 
+    <dd><code>id</code> - The id of the classifier to be excluded 
+    <dt><b>Returns:</b> 
+    <dd>double: The error rate 
+    <dt><b>Throws:</b> 
+    <dd><code>Exception</code> - Some Exception 
+</dl>
+<p><hr> </p>
+<h3>main</h3>
+<pre>public static void <b>main</b>(java.lang.String[]&nbsp;args)</pre>
+<dl>
+    <dd>The main method just for demonstration how to use this class 
+</dl>
+<dl>
+    <dt><b>Parameters:</b> 
+    <dd><code>args</code> - String[] 
+</dl>
+<p><hr> </p>
+</body>
+
+</html>
