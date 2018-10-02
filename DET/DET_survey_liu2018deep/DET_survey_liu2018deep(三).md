@@ -73,8 +73,7 @@ FastRCNN采用了基于跨区域的卷及计算共享的方法，还在卷积层
 
 尽管FastRCNN拥有较为出色的物体检测效率，但是它始终依赖着额外的Region Proposals，这也因此成为FastRCNN最大的瓶颈，最新研究表明，CNNs能够在最后一层卷积过程中很好的对物体进行定位，而在FC层中，这种能力稍欠。因此Region Porposals的选择性研究完全可以用CNNs进行代替，于是FasterRCNN应运而生.
 
-Ren 等人 [175, 176] 提出了一个Region Proposal
-Network (RPN) 用于生成候选框。
+Ren 等人 [175, 176] 提出了一个Region Proposal Network (RPN) 用于生成候选框。
 FasterRCNN利用单个网络完成RPN提取Region Proprsals的任务，然后利用Fast RCNN进行目标分类。
 
 在Faster RCNN中，RPN网络和fast RCNN共享了许多卷积层。 从共享卷积层输出的特征既用于region proposal，又用于region classification。
@@ -84,12 +83,24 @@ FasterRCNN利用单个网络完成RPN提取Region Proprsals的任务，然后利
 
 ## RFCN (Region based Fully Convolutional Network)
 
+相比Fast RCNN, Faster RCNN 已经要快上一个数量级了, 然而他的计算量还是大， 因为每个RPN网络提的候选框都要由RoI层计算， 一帧图要进行几百次RoIs 运算。
+
+RFCN 去掉了隐藏的全连接层， 是一个全卷积网络。 它和Faster RCNN 唯一不同的就是 RoI网络。 在Faster RCNN中，在ROI池化层之后的计算是不能够进行共享的，一个自然的想法是让无法共享的计算量尽量减少。  于是Dai 等人提出利用全卷积网络构建一个共享的RoI子网络，以及在预测前从最后一层卷积中取走ROI部分。 然而这样的操作降低了检测准确率，于是他们又观察了一下，操作了一下，又好用了。
+
+//。。。这部分看不懂了 看算法原文章吧。。。
 
 ## Mask RCNN
+
+Mask RCNN是Faster RCNN的拓展，能够给出像素级的目标实例分割。
+它的流程也是同样是两阶段，而且第一阶段也是RPN，第二阶段模型在对每个RoI预测目标的类别和窗口的同时，多了一个分支计算二值mask。
+
+为了避免原始ROI池化层所带来的失衡，于是研究人员提出了整合ROI的概念，将其用于保存像素级别的空间上的信息互通，在以Res Ne Xt101-FPN网络为主体网络架构的Mask RCNN网络达到了在COCO数据集上的物体实例分割和边缘物体检测最好的效果，总而言之Mask RCNN是一个训练简单, 推广容易, 并与FasterRCNN相比仅仅只增加一个小的开销的网络模型,而且其运行速度在 5fps左右 [1]
 
 
 ## Light Head RCNN
 
+为了加速RFCN， Li等提出了Light Head RCNN。
+顾名思义，轻量化了检测网络以减少RoI的计算量。 具体来说，Li等人应用了一个大的内核可分离卷积, 以产生小通道数和更轻量级的 RCNN 子网,使得在实验过程中形成了在速度和精确度之间的良好的平衡状态。
 
 ![](DET0_fig8_diagrams.png)
 
@@ -98,3 +109,6 @@ FasterRCNN利用单个网络完成RPN提取Region Proprsals的任务，然后利
 
 
 
+
+
+[1]: https://blog.csdn.net/AliceLeeHX/article/details/82726792?utm_source=copy "参考了"
