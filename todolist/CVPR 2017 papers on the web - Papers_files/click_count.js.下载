@@ -1,0 +1,73 @@
+  var req = false;
+  function loadXMLDoc(url, funcProcess) 
+  {
+     req = false;
+     if(window.XMLHttpRequest) 
+     {
+        try 
+        {
+           req = new XMLHttpRequest();
+        } 
+        catch(e) 
+        {
+           req = false;
+        }
+     } 
+     else if(window.ActiveXObject) 
+     {
+        try 
+        {
+           req = new ActiveXObject("Msxml2.XMLHTTP");
+        } 
+        catch(e) 
+        {
+           try 
+           {
+              req = new ActiveXObject("Microsoft.XMLHTTP");
+           } 
+           catch(e) 
+           {
+              req = false;
+           }
+        }
+     }
+     
+     if(req) 
+     {
+        req.onreadystatechange = funcProcess;
+        req.open("GET", url, true);
+        req.send(null);
+     }
+  }
+
+  function ajaxCallback()
+  {
+    if (req.readyState == 4 && req.status == 200 && req.responseText.length)
+      window.location = decodeURIComponent(req.responseText);
+  }
+ 
+  function countClick(href)
+  {
+    if( typeof conference_name == 'undefined' )
+      loadXMLDoc("scripts/click_count.php?conf=undefined&url=" + encodeURIComponent(href), ajaxCallback);
+    else
+      loadXMLDoc("scripts/click_count.php?conf="+conference_name+"&url=" + encodeURIComponent(href), ajaxCallback);
+    return false;  
+  }
+  
+
+  function initCountClick()
+  {
+    var myLinks = document.links;
+    for(var i=0;i < myLinks.length;i++) 
+    {
+        var thehref = myLinks[i].href.toString();        
+        if(thehref.indexOf("cvpapers.com") == -1 && thehref.indexOf("gmazars.info") == -1)
+        {
+          var element = myLinks[i];
+          element['onclick']=new Function("countClick('"+thehref+"'); return false;");
+        }
+    }
+  }
+  
+//window.onload=initCountClick;  

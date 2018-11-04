@@ -1,0 +1,9 @@
+https://github.com/SnailTyan/deep-learning-papers-translation
+https://blog.csdn.net/u012426298/article/details/80225936
+http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Semi-Supervised%20and%20Active%20Learning
+https://www.cnblogs.com/liqizhou/p/2496155.html
+
+
+
+books
+https://github.com/IsaacChanghau/DL-NLP-Readings/blob/master/Papers/Books/Tutorial/Deep%20Learning%20Tutorial%20-%20Montreal.pdf
