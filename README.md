@@ -20,3 +20,6 @@ Deep Learning for Generic Object Detection: A Survey [[DET_survey_liu2018deep]](
 
 
 
+# semi-supervised
+
+[readme](./semi/readme.md)
