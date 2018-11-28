@@ -24,3 +24,11 @@ title: semi-supervised & object detection
 
 但是这种操作需要鲁棒、置信的跟踪
 提出 related-sample ——一种介于 标记和未标记的中间态
+
+# Towards Computational Baby Learning_A Weakly-supervised Approach for Object Detection
+
+2015的一篇弱监督目标检测
+大佬们真会讲故事
+标记一个样本
+检测出一类样本
+重新训练检测器
