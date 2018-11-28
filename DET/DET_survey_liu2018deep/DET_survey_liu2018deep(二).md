@@ -3,6 +3,7 @@
 title: read det survey<liu2018deep> (二)
 
 ---
+这一章主要定义、挑战、历史问题
 
 Deep Learning for Generic Object Detection: A Survey
 

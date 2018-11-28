@@ -1,20 +1,16 @@
----
-
-title: read det survey<liu2018deep> 
-
----
+# read det survey<liu2018deep> 
 
 Deep Learning for Generic Object Detection: A Survey
 
 
-# Abstract
+## Abstract
 
 >... More than 250 key contributions are included in this survey, covering many aspects of generic object detection research: leading detection frameworks and fundamental subproblems including object feature representation, object proposal generation, context information modeling and training strategies; evaluation issues, specifically benchmark datasets, evaluation metrics, and state of the art performance. ...
 
 目标检测是cv的经典问题，典型的任务是在自然图像中定位出目标实例并确定其类别。深度学习有着从数据中直接学习特征表示的过人能力，目标检测任务因其应用而获得突破。
 这篇文章致力于对这个快速发展的领域做一个全面的survey，总结深度应用于DET任务取得的成绩。本文囊括了250多个主要贡献，讨论内容涉及检测框架和多个子问题：目标特征表示、提目标候选框、背景信息建模和网络训练策略，此外还讨论了算法的评价等问题，包括：基准数据集、算法的评价指标以及当前前沿算法的表现。
 
-# 梗概
+## 梗概
 
 文章有点长 好在行文流畅干净 先看看大概说了啥
 

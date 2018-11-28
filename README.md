@@ -1,25 +1,22 @@
----
-title: readcvpaper
+# readcvpaper
 
----
+## DET
 
+静态目标检测的文献阅读
 
-# DET
-
-静态目标检测
-
-* Survey
-
-Deep Learning for Generic Object Detection: A Survey [[DET_survey_liu2018deep]](./DET/DET_survey_liu2018deep/DET_survey_liu2018deep(一).md)
+[[目标检测]](./DET/readme.md)
 
 
 
-# VID
+## VID
+
+有关视频目标检测的文献阅读
 
 [[视频目标检测]](./vid/vid.md)
 
 
 
-# semi-supervised
+## semi-supervised
+有关半监督的文献阅读
 
 [readme](./semi/readme.md)
