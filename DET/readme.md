@@ -5,12 +5,12 @@
 ### Deep Learning for Generic Object Detection: A Survey
 
 这是一篇arxiv长文 梳理了深度学习崛起后的DET任务 
-[pdf](./DET/DET_survey_liu2018deep/DET_survey_liu2018deep.pdf)
+[pdf](./DET_survey_liu2018deep/DET_survey_liu2018deep.pdf)
 
 笔记：
- [【梗概】](./DET/DET_survey_liu2018deep/DET_survey_liu2018deep(一).md) 
-[【定义、挑战、历史】](./DET/DET_survey_liu2018deep/DET_survey_liu2018deep(二).md)
-[【算法框架：两阶段和一阶段】](./DET/DET_survey_liu2018deep/DET_survey_liu2018deep(三).md)
+ [【梗概】](./DET_survey_liu2018deep/DET_survey_liu2018deep(一).md) 
+[【定义、挑战、历史】](./DET_survey_liu2018deep/DET_survey_liu2018deep(二).md)
+[【算法框架：两阶段和一阶段】](./DET_survey_liu2018deep/DET_survey_liu2018deep(三).md)
 
 ### Recent Advances in Object Detection in the Age
 
