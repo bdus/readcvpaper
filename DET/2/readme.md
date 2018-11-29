@@ -34,18 +34,32 @@ R-CNN的主要性能瓶颈在于每个候选区域，都要做一次网络的前
 实际上RoI pooling就是SPPNet只有一层的情况。
 关键在于feature map的映射和ROI pooling
 
-1. feature map的映射
+### 1. feature map的映射
 
 为了说明这个，从dff盗一张图
 ![](../img/featuremap.JPG)
 
+图中是关键/非关键帧的特征图的可视化，可以看到#183卷积核学习到的可能是车的特征，#289卷积核学习的可能是行人的特征，关键是，你会发现卷积特征的位置和原图的位置是相关的，可以说是相对应的。
 
+这就是feature map 映射操作的基础，我们之前要从一张图中抽取候选框，然后再计算feature 现在 **原始图像的框，可以对应于卷积图像相同位置的框** 因此我们只需要对整张图提取一次卷积，然后根据原图的候选框选择，在卷积图上找到对应，就可以节省大量的计算。
 
-2. ROI pooling
+### 2. ROI pooling
+
+ROI的作用，就是不管你输入多少，我的输出数目都是固定的。
+
+SPPNet就是对一张图做不同尺度的ROI 然后把特征顺序连接起来,这样不管你输入图片多大尺寸，我输出的特征都一样长
+
+![](../img/SPPNet.JPG)
 
 详细请参考论文：
 [pdf: SPPNet](./SPPNet.pdf)
 或我在别处的说明[[ROI]](../feynman/ROI.md)
 
 
+## Faster-RCNN
 
+Faster-RCNN提出了RPN网络，终于，Region Proposal也由网络来完成了
+
+为此，引入了anchor、和RPN的概念
+
+[](../img/faster-rcnn.svg)
