@@ -55,11 +55,51 @@ SPPNet就是对一张图做不同尺度的ROI 然后把特征顺序连接起来,
 [pdf: SPPNet](./SPPNet.pdf)
 或我在别处的说明[[ROI]](../feynman/ROI.md)
 
+###  分类和回归
+
+>Then,for each object proposal a region of interest (RoI) pooling layer extracts a fixed-length feature vector from the feature map. Each feature vector is fed into a sequence of fully connected (fc) layers that finally branch into two sibling output layers: **one** that produces softmax probability estimates over K object classes plus a catch-all "background" class and **another** layer that outputs four real-valued numbers for each of the K object classed. Each set of 4 values encodes refined bounfding-box positions for one of the K classes.
+
+于是我们可以知道，RoI pooling后分别连接了softmax分类器和bbox offset回归器
 
 ## Faster-RCNN
 
 Faster-RCNN提出了RPN网络，终于，Region Proposal也由网络来完成了
 
-为此，引入了anchor、和RPN的概念
+为此，[[pdf: faster-rcnn]](./Faster%20R-CNN.pdf)
+引入了anchor、和RPN的概念
 
-[](../img/faster-rcnn.svg)
+![](../img/faster-rcnn.svg)
+
+Faster-CNN论文说的很清楚，他的工作分成两块，前面是RPN，后面是Fast-RCNN。
+前面的RPN proposal regions 给后面的 Fast R-CNN用。
+
+RPN网络的结构直接看论文3.1章节会比较清楚,论文在介绍和实现的时候稍微有点不同，比如实现的时候全连接换成了卷积,不影响理解。
+
+###　RPN
+
+>A Region Proposal Network (RPN) takes an image (of any size) as input and outputs a set of rectangular object proposals, each with an objectness score.
+
+实际上RPN的关键部分是在feature map上完成的,也就是首先由提特征网络得到feature map,然后一个小的卷积网络(sliding window)在feature map上进行特征提取(划窗,对feature map的每一点都进行),小网络的输入是$n \times n$大小的feature map输出是一个固定长度的特征向量(如果是VGG提特征就是512-d,ZF是256-d).
+
+经过一系列的卷积和池化,feature map的尺寸变小了,fmap每个像素都对应着原图里一块区域,以每个像素为中心,产生$k$个先验的锚框(anchor),每个锚框由不同的大小和比例
+
+对于每个anchor,根据其尺寸和特征向量分支出两个全连接层: cls-layer 和 reg-layer
+1. cls-layer 输出是bool,用于判断这个Proposal有没有object(是前景还是背景)
+2. reg-layer 输出有四个,用于预测proposal的中心锚点对应的(x,y,w,h)
+
+因此图中分别是4k和2k的输出
+
+然后后面接RoI pooling
+
+![](../img/rpn.JPG)
+
+再总结一下RPN
+
+1. 卷积网络抽取的特征首先进入一个填充数为 1、通道数为 256 的 3 × 3 卷积层,这样每个像
+素得到一个 256 ⻓度的特征表示。
+2. 以每个像素为中心,生成多个大小和比例不同的锚框和对应的标注。每个锚框使用其中心
+像素对应的 256 维特征来表示。
+3. 在锚框特征和标注上面训练一个两类分类器,判断其含有感兴趣目标还是只有背景。
+4. 对每个被判断成含有目标的锚框,进一步预测其边界框,然后进入 RoI 池化层。
+
+感兴趣可以自己实现一下anchor的生成[[anchor]](../feynman/RPN_anchor.md)
