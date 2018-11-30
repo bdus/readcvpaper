@@ -35,7 +35,7 @@ https://github.com/hoya012/deep_learning_object_detection
 
 以及[Recent Advances in Object Detection in the Age](./age_advances)的2.1章节
 
-下面是我自己的整理，主要参考的gluon
+下面是我自己的整理，主要参考的gluon和原文
 
 ## 两阶段
 
@@ -55,4 +55,4 @@ https://github.com/hoya012/deep_learning_object_detection
 * SPP
 * RPN
 
-
+[jump to...](./feynman)
