@@ -43,6 +43,7 @@ mxnet.ndarray.ROIPooling(
     )
 ```
 ![](../img/RoI.png)
+
 假设一张图片我们得到了4x4的特征,通道数为1
 ```
 from mxnet import nd
@@ -62,8 +63,12 @@ nd.ROIPooling(x, rois, pooled_size=(2,2), spatial_scale=1)
 ```
 ![](../img/RoI1.png)
 
-## implemention
+## implementation
 
 来看一下mxnet的实现[link](https://github.com/apache/incubator-mxnet/blob/2becd7641fbe264b72425fe6b1ded00cea19d3a8/src/operator/roi_pooling.cc)
 
 可以参考阅读网上的这篇caffe实现的RoI https://blog.csdn.net/lanran2/article/details/60143861
+
+在看源码的时候发现了RoIAlign
+
+可以看一下这篇帖子:[深度学习: 从 RoIPooling 到 RoIAlign](https://blog.csdn.net/JNingWei/article/details/78822159)
