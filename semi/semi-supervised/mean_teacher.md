@@ -30,7 +30,7 @@ student通过梯度下降更新参数，teacher通过student的参数更新
 >原文:After the weights of the student model have been updated with gradient descent, the teacher model weights are updated as an exponential moving average of the student weights.
 
 
-1. teacher的参数更新
+### 1. teacher的参数更新
    
 mean teacher 相比Temporal ensembling 和 $\Pi$ model 的创新主要就在这里:
 >原文:The difference between the Π model, Temporal Ensembling, and Mean teacher is how the teacher
@@ -46,26 +46,37 @@ $$
 $$
 
 
-2. student的参数更新
+### 2. student的参数更新
 
 论文里面说student参数更新是SGD，并没有具体的算法loss表达和流程，
 只在图例描述了过程，说了和Temporal ensembling 、 $\Pi$ model一样 
 
+
+所以我们还是结合一下[Temporal ensembling](https://arxiv.org/pdf/1610.02242.pdf)
+
+![](../img/pi_model.PNG)
+
+看过$\Pi$ model 我们来重新理解一下mean teacher
+
+
+![](../img/mean_teacher.PNG)
+上图是 单个标签的训练样本的例子
+student和teacher模型都接收同一个输入x分别加上不同的噪声$\eta,\eta'$
+然后student模型的softmax输出 (1)首先和one-hot label做交叉熵（classification cost function），(2)同时和teacher模型做一致性cost function（$J(\theta)$）. 这样student的权重更新以后，根据其权重，指数滑动平均EMA来更新teacher. s和t都可以用于预测，但是t可能更好。在u集上的训练类似，除了没有classification cost function.
+
+结合Temporal ensembling来看，就很好理解了
+
 网上有[blog](https://blog.csdn.net/hjimce/article/details/80551721)
-做了总结 但是也不详出处
-
-所以我们还是看一下[$T$](https://arxiv.org/pdf/1610.02242.pdf)和$\Pi$两篇文章
+做了总结
 
 
-
-## 代码
+# 代码
 
 代码用的tf版本比较老，最好用1.2.1版本去跑
 
 https://github.com/CuriousAI/mean-teacher/blob/master/tensorflow/mean_teacher/model.py
 
-
-![](../img/mean_teacher.PNG)
+// 填坑
 
 # reference
 
