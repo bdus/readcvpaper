@@ -1,6 +1,5 @@
----
-title: semi-supervised & object detection
----
+# semi-supervised & object detection
+
 
 ## semi-supervised Learning of Feature Hierarchies for Object Detection in a Video
 
@@ -14,7 +13,7 @@ title: semi-supervised & object detection
 5. 重复1-4直到hard example中没有置信样本
 
 
-# Adaptive Learning for Celebrity Identification With Video Context
+## Adaptive Learning for Celebrity Identification With Video Context
 
 这一篇 2014年 视频中的名人识别
 
@@ -25,7 +24,7 @@ title: semi-supervised & object detection
 但是这种操作需要鲁棒、置信的跟踪
 提出 related-sample ——一种介于 标记和未标记的中间态
 
-# Towards Computational Baby Learning_A Weakly-supervised Approach for Object Detection
+## Towards Computational Baby Learning_A Weakly-supervised Approach for Object Detection
 
 2015的一篇弱监督目标检测
 大佬们真会讲故事

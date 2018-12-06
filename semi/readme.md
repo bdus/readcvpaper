@@ -1,10 +1,17 @@
----
-title: 半监督文献阅读
----
-# 子文件夹
-半监督目标检测相关
+# 半监督文献阅读
 
-[link](./semi_obj/readme.md)
+## 经典半监督方法
+
+[classic](./feynman/classic.md)
+
+## 半监督-深度
+
+主要是训练方法
+[semi-supervised](./semi-supervised/)
+
+
+## 半监督目标检测相关
+[link](./semi_obj/)
 
 
 # 此目录下
@@ -25,4 +32,4 @@ discriminator的输出是置信map 每个像素上的值是[0,1]
 具体可以看论文4.2介绍loss的
 
 
-# meta-learning for semi-supervised few-shot classification
+## meta-learning for semi-supervised few-shot classification

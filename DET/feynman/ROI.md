@@ -72,3 +72,5 @@ nd.ROIPooling(x, rois, pooled_size=(2,2), spatial_scale=1)
 在看源码的时候发现了RoIAlign
 
 可以看一下这篇帖子:[深度学习: 从 RoIPooling 到 RoIAlign](https://blog.csdn.net/JNingWei/article/details/78822159)
+
+(虽然还没具体实现但是想起来的爱可可的忠告既然大概明白了就先放一放不求甚解搞别的
