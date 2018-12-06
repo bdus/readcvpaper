@@ -9,7 +9,7 @@
 
 主要工作在于通过权重平均的方法来更新teacher参数，而不是简单的replicating student
 
-## 算法
+## 算法思路
 
 算法的整体包括两个网络，teacher网络 和 student网络
 teacher 是 student网络的一份复制，因此网络结构相同，但是网络更新的方式不同，因此是两个独立的网络
@@ -56,10 +56,12 @@ $$
 
 ![](../img/pi_model.PNG)
 
+## 训练
+
 看过$\Pi$ model 我们来重新理解一下mean teacher
 
-
 ![](../img/mean_teacher.PNG)
+
 上图是 单个标签的训练样本的例子
 student和teacher模型都接收同一个输入x分别加上不同的噪声$\eta,\eta'$
 然后student模型的softmax输出 (1)首先和one-hot label做交叉熵（classification cost function），(2)同时和teacher模型做一致性cost function（$J(\theta)$）. 这样student的权重更新以后，根据其权重，指数滑动平均EMA来更新teacher. s和t都可以用于预测，但是t可能更好。在u集上的训练类似，除了没有classification cost function.
@@ -67,14 +69,29 @@ student和teacher模型都接收同一个输入x分别加上不同的噪声$\eta
 结合Temporal ensembling来看，就很好理解了
 
 网上有[blog](https://blog.csdn.net/hjimce/article/details/80551721)
-做了总结
+做了总结，我们还是看官方的[link](https://github.com/CuriousAI/mean-teacher#approach)：
+
+Mean Teacher is a simple method for semi-supervised learning. It consists of the following steps:
+
+1. Take a supervised architecture and make a copy of it. Let's call the original model the student and the new one the teacher.
+2. At each training step, use the same minibatch as inputs to both the student and the teacher but add random augmentation or noise to the inputs separately.
+3. Add an additional consistency cost between the student and teacher outputs (after softmax).
+4. Let the optimizer update the student weights normally.
+5. Let the teacher weights be an exponential moving average (EMA) of the student weights. That is, after each training step, update the teacher weights a little bit toward the student weights.
+
+Our contribution is the last step. Laine and Aila [paper](https://arxiv.org/abs/1610.02242) used shared parameters between the student and the teacher, or used a temporal ensemble of teacher predictions. In comparison, Mean Teacher is more accurate and applicable to large datasets.
 
 
 # 代码
 
 代码用的tf版本比较老，最好用1.2.1版本去跑
 
+
 https://github.com/CuriousAI/mean-teacher/blob/master/tensorflow/mean_teacher/model.py
+
+tf代码看的似懂非懂的。。
+计算图长这样
+![](../img/mt_graph.png)
 
 // 填坑
 
