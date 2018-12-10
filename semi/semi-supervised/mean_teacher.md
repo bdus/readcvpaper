@@ -1,5 +1,7 @@
 # mean teacher
 
+https://blog.csdn.net/u013562700/article/details/84936966
+
 半监督 mean teacher 是17年提出来的半监督方法：
 >Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results
 
