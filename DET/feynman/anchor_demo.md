@@ -85,6 +85,8 @@ http://zh.d2l.ai/chapter_computer-vision/multiscale-object-detection.html
 
 事实是这样没错，但实际上，虽然由a种anchor，检测器是不知道anchor长什么样子的。
 
+具体检测实现例子细节: http://zh.d2l.ai/chapter_computer-vision/ssd.html
+
 # reference
 
 参考mxnet教程
