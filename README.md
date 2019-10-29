@@ -20,3 +20,7 @@
 有关半监督的文献阅读
 
 [readme](./semi/)
+
+## 行为识别
+
+[readme](./action recognition/)
